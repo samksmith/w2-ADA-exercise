@@ -1,0 +1,42 @@
+---
+title: "w2-ADA-exercises"
+author: "Sam Smith"
+date: "1/27/2022"
+output: html_document
+---
+
+Dataframes and lists can both contain elements that have different types. Dataframes are a special case of a list where the elements all have the same number of elements within them.
+
+```{r}
+s <- c("this", "is", "a", "vector", "of", "strings") # vector of character strings
+m <- matrix(data=1:40, nrow=5, ncol=8) # matrix with integer data
+b <- FALSE # boolean
+l <- list(s, m, b) # combine these objects into a list
+```
+
+Lists (and other objects) can be subsetted by using [[]], [], or $ notation. The main difference between [[]] and [] is how the element is treated. If you use single brackets, the element is returned with type "list" (the same as the object it comes from). 
+``` {r}
+l[2] # return the second element of the list
+class(l[2]) # what is the class of this object?
+```
+
+If you use double brackets, the element is returned as whatever type that element is (as if it was never in a list).
+
+```{r}
+l[[2]] # return the second element of the list (just like last time!)
+class(l[[2]]) # the class is now matrix instead of list
+```
+
+I sort of think of this as pulling an item out of the object "permanently" (i.e. considering the item its own object) versus pulling the item out of the object temporarily (i.e. I want to remember the context from which the item came -- a list in this case).
+
+
+This is how you read in a dataframe. Read in the CPDS data downloaded from Tony's github (https://github.com/difiore/ada-2022-datasets)
+
+```{r}
+df <- read.csv(
+  file = "~/repos/w2-ADA-exercise/CPDS-1960-2014-reduced.csv",
+  sep = ",",
+  header = TRUE,
+  stringsAsFactors = FALSE
+)
+```
